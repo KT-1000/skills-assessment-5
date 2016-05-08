@@ -16,10 +16,13 @@ class Model(db.Model):
     """Car model."""
 
     __tablename__ = "models"
-    model_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     year = db.Column(db.Integer)
     name = db.Column(db.String(50))
-    brand_name = db.Column(db.String(50), db.ForeignKey('brands.name'))
+
+    brand_id = db.Column(db.Integer, db.ForeignKey('brands.id'))
+
+    brand_name = db.relationship("Brand", backref=db.backref("brands", order_by=name))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -28,11 +31,12 @@ class Model(db.Model):
 
 
 class Brand(db.Model):
+
     """Car brand."""
 
     __tablename__ = "brands"   
-    brand_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    name = db.Column(db.String(50))
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
     founded = db.Column(db.Integer)
     headquarters = db.Column(db.String(50))
     discontinued = db.Column(db.Integer)
