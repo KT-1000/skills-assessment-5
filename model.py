@@ -16,15 +16,32 @@ class Model(db.Model):
     """Car model."""
 
     __tablename__ = "models"
-    pass
+    model_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    year = db.Column(db.Integer)
+    name = db.Column(db.String(50))
+    brand_name = db.Column(db.String(50), db.ForeignKey('brands.name'))
+
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return "<model=%s year=%d>" % (self.name, self.year)
 
 
 class Brand(db.Model):
     """Car brand."""
 
-    __tablename__ = "brands"
-    pass
+    __tablename__ = "brands"   
+    brand_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    name = db.Column(db.String(50))
+    founded = db.Column(db.Integer)
+    headquarters = db.Column(db.String(50))
+    discontinued = db.Column(db.Integer)
 
+    def __repr__(self):
+        """Provide helpful representation when printed."""
+
+        return ("<brand=%s founded=%d headquarters=%s discontinued=%d>" % 
+                (self.name, self.founded, self.headquarters, self.discontinued))
 
 # End Part 1
 
