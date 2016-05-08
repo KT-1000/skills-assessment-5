@@ -10,7 +10,6 @@ here, so feel free to refer to classes without the
 [model.]User prefix.
 
 """
-
 from model import *
 
 init_app()
@@ -31,7 +30,7 @@ init_app()
 
 # Get all brands that were founded in 1903 and that are not yet discontinued.
 
-# Get all brands that are either 1) discontinued (at any time) or 2) founded 
+# Get all brands that are either 1) discontinued (at any time) or 2) founded
 # before 1950.
 
 # Get any model whose brand_name is not Chevrolet.
@@ -54,10 +53,15 @@ def get_brands_summary():
 # Part 2.5: Discussion Questions (Include your answers as comments.)
 
 # 1. What is the returned value and datatype of ``Brand.query.filter_by(name='Ford')``?
+# Datatype is a Brand object:
+#
 
 # 2. In your own words, what is an association table, and what *type* of relationship
 # does an association table manage?
-
+# An association table provides a way to connect two tables that would otherwise
+# have a many-to-many relationship. Its constituents parts are typically
+# its own primary key, one foreign key from one table, and a second foreign
+# key from the other table.
 # -------------------------------------------------------------------
 # Part 3
 
