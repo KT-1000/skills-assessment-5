@@ -62,6 +62,7 @@ def get_brands_summary():
     '''Prints out each brand name, and each model name for that brand
     using only ONE database query.'''
     brands = db.session(Brand.name, Model.name).join(Model).all()
+    #some kind of backref thing?
 
 # -------------------------------------------------------------------
 # Part 2.5: Discussion Questions (Include your answers as comments.)
@@ -82,8 +83,17 @@ def get_brands_summary():
 # Part 3
 
 def search_brands_by_name(mystr):
-    pass
+    brands = []
+    result = Brand.query.filter(Brand.name == mystr)
+
+    for brand in result:
+        brands_by_name = brands.append(brand)
+
+    return brands_by_name
 
 
 def get_models_between(start_year, end_year):
+    # get years between start and end year
+    # query db for all models in that list
+    # return list of model names
     pass
